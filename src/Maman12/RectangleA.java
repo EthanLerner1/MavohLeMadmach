@@ -11,6 +11,9 @@ public class RectangleA {
     private int _width;
     private int _height;
     private Point _pointSW;
+
+    // consts
+    private final int DEFAULT_VALUE = 1;
     //endregion
 
     // region ------- Constructors -------
@@ -22,17 +25,15 @@ public class RectangleA {
      * @param height The rectangle height
      */
     public RectangleA(int width, int height) {
-        final int DEFAULT_WIDTH = 1;
-        final int DEFAULT_HEIGHT = 1;
         if (width > 0) { // validate that w is bigger then 0
             this._width = width;
         } else {
-            this._width = DEFAULT_WIDTH;
+            this._width = DEFAULT_VALUE;
         }
         if (height > 0) { // validate that h is bigger then 0
             this._height = height;
         } else {
-            this._height = DEFAULT_HEIGHT;
+            this._height = DEFAULT_VALUE;
         }
         this._pointSW = new Point(0, 0);// default
     }
@@ -45,17 +46,15 @@ public class RectangleA {
      * @param h rectangle height
      */
     public RectangleA(Point p, int w, int h) {
-        final int DEFAULT_WIDTH = 1;
-        final int DEFAULT_HEIGHT = 1;
         if (w > 0) { // validate that w is bigger then 0
             this._width = w;
         } else {
-            this._width = DEFAULT_WIDTH;
+            this._width = DEFAULT_VALUE;
         }
         if (h > 0) { // validate that h is bigger then 0
             this._height = h;
         } else {
-            this._height = DEFAULT_HEIGHT;
+            this._height = DEFAULT_VALUE;
         }
         this._pointSW = new Point(p); // under the circumstance that p != null
     }
