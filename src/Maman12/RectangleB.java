@@ -10,6 +10,8 @@ public class RectangleB {
     // region ----- Properties -----
     private Point _pointSW;
     private Point _pointNE;
+
+    private final int DEFAULT_VALUE = 1;
     // endregion
 
     // region ----- Constructors -----
@@ -21,17 +23,13 @@ public class RectangleB {
      * @param h The rectangle height
      */
     public RectangleB(int w, int h) {
-        // default values
-        final int DEFAULT_WIDTH = 1;
-        final int DEFAULT_HEIGHT = 1;
-
         this._pointSW = new Point(0, 0); // default value for pointSW
         // validate w,h
         if (w <= 0) {
-            w = DEFAULT_WIDTH;
+            w = DEFAULT_VALUE;
         }
         if (h <= 0) {
-            h = DEFAULT_HEIGHT;
+            h = DEFAULT_VALUE;
         }
         this._pointNE = new Point(w, h);
     }
@@ -44,16 +42,12 @@ public class RectangleB {
      * @param h rectangle height
      */
     public RectangleB(Point p, int w, int h) {
-        // default values
-        final int DEFAULT_WIDTH = 1;
-        final int DEFAULT_HEIGHT = 1;
-
         // validate w,h
         if (w <= 0) {
-            w = DEFAULT_WIDTH;
+            w = DEFAULT_VALUE;
         }
         if (h <= 0) {
-            h = DEFAULT_HEIGHT;
+            h = DEFAULT_VALUE;
         }
 
         this._pointSW = new Point(p);
