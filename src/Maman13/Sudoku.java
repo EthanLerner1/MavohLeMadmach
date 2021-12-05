@@ -1,17 +1,31 @@
 package Maman13;
 
+/**
+ * represents a Sudoku board
+ *
+ * @author Ethan Lerner
+ * @version 05/12/2021
+ */
 public class Sudoku {
     private Square3x3[][] _board;
 
+    /**
+     * default constructor for sudoku board.
+     * inits all cells to new empty Square3x3
+     */
     public Sudoku() {
         this._board = new Square3x3[3][3];
-        for (int i = 0; i< this._board.length ; i ++) {
-            for (int j = 0; j< this._board[i].length ; j++) {
+        for (int i = 0; i < this._board.length; i++) {
+            for (int j = 0; j < this._board[i].length; j++) {
                 this._board[i][j] = new Square3x3();
             }
         }
     }
 
+    /**
+     * constructor, takes the values from the given squqre3x3Array and copies it into this._board
+     * @param square3x3Array
+     */
     public Sudoku(Square3x3[][] square3x3Array) {
         // init new board
         this._board = new Square3x3[3][3];
@@ -23,6 +37,11 @@ public class Sudoku {
         }
     }
 
+
+    /**
+     * this function checks if the current sudoku board is valid
+     * @return true if the board is valid, else, false
+     */
     public Boolean isValid() {
         // check that each cube in the board contains 1-9
         for (int i = 0; i < this._board.length; i++) {
