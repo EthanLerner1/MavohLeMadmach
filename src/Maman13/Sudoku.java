@@ -48,7 +48,7 @@ public class Sudoku {
      */
     public boolean isValid() {
         for (int i = 0; i < this._board.length; i++) {
-            boolean[] rowValues = new boolean[10]; //TODO: make const
+            boolean[] rowValues = new boolean[10];
             boolean[] colValues = new boolean[10];
             for (int j = 0; j < this._board[i].length; j++) {
                 // check that cube contains all numbers between 1-9
