@@ -22,7 +22,7 @@ public class Square3x3 {
      * default constructor: init a 3x3 square with -1 in all of its cells
      */
     public Square3x3() {
-        this._square = new int[ARRAY_SIZE][ARRAY_SIZE]; // create new int[][] todo CHANGE 3 TO FINAL
+        this._square = new int[this.ARRAY_SIZE][this.ARRAY_SIZE];
         // initialize the two-dimensional array
         for (int i = 0; i < this._square.length; i++) {
             for (int j = 0; j < this._square[0].length; j++) {
@@ -37,7 +37,7 @@ public class Square3x3 {
      * @param array values to fill this square with
      */
     public Square3x3(int[][] array) {
-        this._square = new int[ARRAY_SIZE][ARRAY_SIZE]; // init square
+        this._square = new int[this.ARRAY_SIZE][this.ARRAY_SIZE]; // init square
 
         // copy values from given array
         for (int i = 0; i < this._square.length; i++) {
@@ -57,10 +57,10 @@ public class Square3x3 {
      * @param other Square3x3 to copy values from
      */
     public Square3x3(Square3x3 other) {
-        this._square = new int[3][3];
+        this._square = new int[this.ARRAY_SIZE][this.ARRAY_SIZE];
         // copy values from given array
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 3; j++) {
+        for (int i = 0; i < this.ARRAY_SIZE; i++) {
+            for (int j = 0; j < this.ARRAY_SIZE; j++) {
                 this._square[i][j] = other.get_square()[i][j]; // copy values
             }
         }
@@ -105,9 +105,9 @@ public class Square3x3 {
      * @return string representation of the array
      */
     public String toString() {
-        String ret = "";
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 3; j++) {
+        String ret = ""; 
+        for (int i = 0; i < this.ARRAY_SIZE; i++) {
+            for (int j = 0; j < this.ARRAY_SIZE; j++) {
                 if (j == 0) {
                     ret += this._square[i][j];
                 } else {
@@ -184,7 +184,6 @@ public class Square3x3 {
 
     // this function checks if a given number is inside the square
     private boolean numberInSquare(int num) {
-
         for (int i = 0; i < this._square.length; i++) {
             for (int j = 0; j < this._square[i].length; j++) {
                 if (this._square[i][j] == num)
@@ -194,6 +193,7 @@ public class Square3x3 {
         return false;
     }
 
+    // checks if a given number exists in a given row
     private boolean numberInRow(int row, int num) {
         for (int i = 0; i < this._square[row].length; i++) {
             if (this._square[row][i] == num)
@@ -202,6 +202,7 @@ public class Square3x3 {
         return false;
     }
 
+    // checks if a given number exists in a given col
     private boolean numberInCol(int col, int num) {
         for (int i = 0; i < this._square.length; i++) {
             if (this._square[i][col] == num) {
@@ -211,10 +212,10 @@ public class Square3x3 {
         return false;
     }
 
-    public int[][] get_square() {
-        int[][] ret = new int[3][3]; // create new array, prevent aliasing
-        for (int i = 0; i < 3; i++) { // copying values from this square to returned square
-            for (int j = 0; j < 3; j++) {
+    private int[][] get_square() {
+        int[][] ret = new int[this.ARRAY_SIZE][this.ARRAY_SIZE]; // create new array, prevent aliasing
+        for (int i = 0; i < this.ARRAY_SIZE; i++) { // copying values from this square to returned square
+            for (int j = 0; j < this.ARRAY_SIZE; j++) {
                 ret[i][j] = this._square[i][j]; // copy values
             }
         }
@@ -222,4 +223,5 @@ public class Square3x3 {
     }
 
     // endregion
+
 }

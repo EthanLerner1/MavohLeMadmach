@@ -9,12 +9,14 @@ package Maman13;
 public class Sudoku {
     private Square3x3[][] _board;
 
+    private final int BOARD_SIZE = 3;
+
     /**
      * default constructor for sudoku board.
      * inits all cells to new empty Square3x3
      */
     public Sudoku() {
-        this._board = new Square3x3[3][3];
+        this._board = new Square3x3[this.BOARD_SIZE][this.BOARD_SIZE];
         for (int i = 0; i < this._board.length; i++) {
             for (int j = 0; j < this._board[i].length; j++) {
                 this._board[i][j] = new Square3x3();
@@ -24,11 +26,13 @@ public class Sudoku {
 
     /**
      * constructor, takes the values from the given squqre3x3Array and copies it into this._board
-     * @param square3x3Array
+     *
+     * @param square3x3Array 3x3 to copy values from
      */
     public Sudoku(Square3x3[][] square3x3Array) {
+        // under the circumstance that square3x3Array is a valid array
         // init new board
-        this._board = new Square3x3[3][3];
+        this._board = new Square3x3[this.BOARD_SIZE][this.BOARD_SIZE];
         // copy values from given array
         for (int i = 0; i < this._board.length; i++) {
             for (int j = 0; j < this._board[i].length; j++) {
@@ -37,94 +41,44 @@ public class Sudoku {
         }
     }
 
-
     /**
      * this function checks if the current sudoku board is valid
+     *
      * @return true if the board is valid, else, false
      */
-    public Boolean isValid() {
-        // check that each cube in the board contains 1-9
+    public boolean isValid() {
         for (int i = 0; i < this._board.length; i++) {
+            boolean[] rowValues = new boolean[10]; //TODO: make const
+            boolean[] colValues = new boolean[10];
             for (int j = 0; j < this._board[i].length; j++) {
+                // check that cube contains all numbers between 1-9
                 if (!this._board[i][j].allThere()) {
                     return false;
                 }
+
+                // whos there row and col
+                this._board[i][j].whosThereRow(i, rowValues);
+                this._board[j][i].whosThereCol(i, colValues);
+
+
             }
-        }
-
-        // check that all the rows contains 1-9
-        for (int i = 0; i < this._board.length; i++) {
-            boolean[] checkNumbers = new boolean[10];
-            for (int j = 0; j < this._board[i].length; j++) { // check whosThereRow for all cells in the board
-                boolean[] checkNumbersTemp = new boolean[10];
-                this._board[i][j].whosThereRow(i, checkNumbersTemp);// get current whosThere
-
-                // check if number exist more than once
-                int identicalNumbers = this.checkIfTwoCellsIsTrue(checkNumbers, checkNumbersTemp);
-                if (identicalNumbers != 0) {
-                    System.out.println("error in " + i + " row, number: " + identicalNumbers + " exist more then once");
-                    return false;
-                }
-
-                // merge checkNumbersArray
-                this._board[i][j].whosThereRow(i, checkNumbers);
-            }
-
-            // check that checkNums Filled with "true"
-            for (int j = 1; j < checkNumbers.length; j++) {
-                if (!checkNumbers[j]) {
-                    System.out.println("error in " + i + " row, not all numbers exist");
-                    return false;
-                }
-            }
-        }
-
-        // check that all the columns contains 1-9
-        for (int i = 0; i < this._board.length; i++) {
-            boolean[] checkNumbers = new boolean[10];
-            for (int j = 0; j < this._board[i].length; j++) { // check whosThereCol for all cells in the board
-                boolean[] checkNumbersTemp = new boolean[10];
-                this._board[j][i].whosThereCol(i, checkNumbersTemp);// get current whosThere
-
-                // check if number exist more then once
-                int identicalNumbers = this.checkIfTwoCellsIsTrue(checkNumbers, checkNumbersTemp);
-                if (identicalNumbers != 0) {
-                    System.out.println("error in " + i + " col, number: " + identicalNumbers + " exist more then once");
-                    return false;
-                }
-
-                // merge checkNumbersArray
-                this._board[j][i].whosThereCol(i, checkNumbers);
-            }
-
-            // check that checkNums Filled with "true"
-            for (int j = 1; j < checkNumbers.length; j++) {
-                if (!checkNumbers[j]) {
-                    System.out.println("error in " + i + " col, not all numbers exist");
-                    return false;
-                }
+            // check that row and col includes all numbers between 1-9
+            if (!this.containsAllNumbers(rowValues) || !this.containsAllNumbers(colValues)) {
+                return false;
             }
         }
         return true;
     }
 
-    /* this function compares between two boolean arrays and returns the number of the cell that contains true in both arrays
-     * if non exist, returns 0
-     */
-    private int checkIfTwoCellsIsTrue(boolean[] arr1, boolean[] arr2) {
-        // make sure that both arrays are the same size
-        if (arr1.length != arr2.length)
-            return 0;
 
-        // go over arrays
-        for (int i = 1; i < arr1.length; i++) {
-            if (arr1[i] && arr2[i])
-                return i;
-
+    private boolean containsAllNumbers(boolean[] arr) {
+        for (int i = 1; i < arr.length; i++) {
+            if (!arr[i]) {
+                return false;
+            }
         }
-
-        // passed tests
-        return 0;
+        return true;
     }
+
 
 }
