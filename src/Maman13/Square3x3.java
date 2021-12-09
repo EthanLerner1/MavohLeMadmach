@@ -1,7 +1,7 @@
 package Maman13;
 
 /**
- * represents a squre with 3x3 dimensions
+ * represents a square with 3x3 dimensions
  *
  * @author Ethan Lerner
  * @version 02/12/2021
@@ -61,7 +61,7 @@ public class Square3x3 {
         // copy values from given array
         for (int i = 0; i < this.ARRAY_SIZE; i++) {
             for (int j = 0; j < this.ARRAY_SIZE; j++) {
-                this._square[i][j] = other.get_square()[i][j]; // copy values
+                this._square[i][j] = other._square[i][j]; // copy values
             }
         }
     }
@@ -96,7 +96,7 @@ public class Square3x3 {
         if (row >= this._square.length || row < 0 || col >= this._square[0].length || col < 0) { // if user values are out of range
             return;
         }
-        this._square[row][col] = value;
+        this._square[row][col] = value; // set wanted location (row,col) to the given value
     }
 
     /**
@@ -105,16 +105,16 @@ public class Square3x3 {
      * @return string representation of the array
      */
     public String toString() {
-        String ret = ""; 
-        for (int i = 0; i < this.ARRAY_SIZE; i++) {
+        String ret = ""; // init string
+        for (int i = 0; i < this.ARRAY_SIZE; i++) { // go over all the cells in the square
             for (int j = 0; j < this.ARRAY_SIZE; j++) {
-                if (j == 0) {
+                if (j == 0) { // if first in row dont add \t
                     ret += this._square[i][j];
                 } else {
-                    ret += "\t" + this._square[i][j];
+                    ret += "\t" + this._square[i][j]; // else add \t
                 }
             }
-            ret += "\n";
+            ret += "\n"; // every new line add \n
         }
         return ret;
     }
@@ -149,7 +149,7 @@ public class Square3x3 {
             return;
         }
 
-        // go over all 1-9 numbers
+        // go over all 1-9 numbers. and check if their inside the row
         for (int i = 1; i <= 9; i++) {
             if (this.numberInRow(row, i))
                 values[i] = true;
@@ -172,6 +172,7 @@ public class Square3x3 {
             return;
         }
 
+        // check if 1-9 is in the given col
         for (int i = 1; i <= 9; i++) {
             if (this.numberInCol(col, i)) {
                 values[i] = true;
@@ -184,9 +185,9 @@ public class Square3x3 {
 
     // this function checks if a given number is inside the square
     private boolean numberInSquare(int num) {
-        for (int i = 0; i < this._square.length; i++) {
+        for (int i = 0; i < this._square.length; i++) { // go over entire square
             for (int j = 0; j < this._square[i].length; j++) {
-                if (this._square[i][j] == num)
+                if (this._square[i][j] == num) // if number exists return true;
                     return true;
             }
         }
@@ -195,8 +196,8 @@ public class Square3x3 {
 
     // checks if a given number exists in a given row
     private boolean numberInRow(int row, int num) {
-        for (int i = 0; i < this._square[row].length; i++) {
-            if (this._square[row][i] == num)
+        for (int i = 0; i < this._square[row].length; i++) { // go over a given row
+            if (this._square[row][i] == num) // if number exist return true
                 return true;
         }
         return false;
@@ -204,23 +205,14 @@ public class Square3x3 {
 
     // checks if a given number exists in a given col
     private boolean numberInCol(int col, int num) {
-        for (int i = 0; i < this._square.length; i++) {
-            if (this._square[i][col] == num) {
+        for (int i = 0; i < this._square.length; i++) { // go over a given column
+            if (this._square[i][col] == num) { // if number exist return true
                 return true;
             }
         }
         return false;
     }
 
-    private int[][] get_square() {
-        int[][] ret = new int[this.ARRAY_SIZE][this.ARRAY_SIZE]; // create new array, prevent aliasing
-        for (int i = 0; i < this.ARRAY_SIZE; i++) { // copying values from this square to returned square
-            for (int j = 0; j < this.ARRAY_SIZE; j++) {
-                ret[i][j] = this._square[i][j]; // copy values
-            }
-        }
-        return ret;
-    }
 
     // endregion
 
