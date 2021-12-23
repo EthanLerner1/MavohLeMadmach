@@ -48,7 +48,7 @@ public class Sudoku {
      *
      * @return true if the board is valid, else, false
      */
-    public boolean isValid() {
+    public boolean isValid() { // error not a good function fails with the input in the main
         // finals
         final int VALUES_ARRAY_SIZE = 10;
 
@@ -76,6 +76,16 @@ public class Sudoku {
         return true;
     }
 
+    public String toString(){
+        String ret = "";
+        for (int i=0 ; i<this._board.length ; i++){
+            ret+="-------------------------------\n";
+            for (int j=0 ; j<this._board[0].length ; j++){
+                ret += this._board[i][j].toString();
+            }
+        }
+        return ret;
+    }
     /*
      * this function checks that a boolean array contains true in each of his cells except from index =0
      */
@@ -89,5 +99,34 @@ public class Sudoku {
         return true;
     }
 
+    public static void main(String[] args) {
+        Square3x3[] firstRow = new Square3x3[3];
+        int[][] firstCell = {{1, 6, 8}, {7, 9, 2}, {5, 3, 4}};
+        firstRow[0] = new Square3x3(firstCell);
+        int[][] secondCell = {{9,2,3}, {6,5,4}, {8,1,7}};
+        firstRow[1] = new Square3x3(secondCell);
+        int[][] thirdCell = {{4,5,7}, {1,8,9}, {2,3,6}};
+        firstRow[2] = new Square3x3(thirdCell);
 
+        Square3x3[] secondRow = new Square3x3[3];
+        int[][] SfirstCell = {{3,1,9}, {8,4,7}, {2,5,6}};
+        secondRow[0] = new Square3x3(SfirstCell);
+        int[][] SsecondCell = {{2,8,5}, {1,3,6}, {4,7,9}};
+        secondRow[1] = new Square3x3(SsecondCell);
+        int[][] SthirdCell = {{7,6,4}, {5,9,2}, {8,1,3}};
+        secondRow[2] = new Square3x3(SthirdCell);
+
+        Square3x3[] thirdRow = new Square3x3[3];
+        int[][] TfirstCell = {{4,8,5}, {6,2,1}, {9,7,3}};
+        thirdRow[0] = new Square3x3(TfirstCell);
+        int[][] TsecondCell = {{3,6,2}, {7,9,8}, {5,4,1}};
+        thirdRow[1] = new Square3x3(TsecondCell);
+        int[][] TthirdCell = {{9,7,1}, {3,4,5}, {6,2,8}};
+        thirdRow[2] = new Square3x3(TthirdCell);
+
+        Square3x3[][] board = {firstRow, secondRow, thirdRow};
+        Sudoku sud = new Sudoku(board);
+        System.out.println(sud.toString());
+        System.out.println(sud.isValid());
+    }
 }
