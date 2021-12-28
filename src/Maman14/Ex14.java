@@ -46,9 +46,10 @@ public class Ex14 {
         int xStart = 0, yStart = 0, yEnd = mat.length, xEnd = mat[0].length;
 
         while (true) {
-            if (yEnd - 1 == yStart)
+            // stopping conditions
+            if (yEnd - 1 == yStart)// if matrix have only one cell
                 return mat[yStart][xStart] == num;
-            if (yEnd - yStart == 2)
+            if (yEnd - yStart == 2) // two by two matrix
                 return mat[yStart][xStart] == num || mat[yStart][xStart + 1] == num ||
                         mat[yStart + 1][xStart] == num || mat[yStart + 1][xStart + 1] == num;
 
@@ -84,17 +85,19 @@ public class Ex14 {
      * borders: [yStart, xStart, yEnd, xEnd]
      */
     private static int isInQ(int[][] mat, int yStart, int xStart, int yEnd, int xEnd, int num) {
-        boolean inQ1 = (mat[yStart][xStart] <= num) && (mat[yStart + (yEnd - yStart) / 2 - 1][xStart] >= num);
+        int squareHeight = yStart + (yEnd - yStart) / 2;
+        int squareWidth = xStart + (xEnd - xStart) / 2;
+        boolean inQ1 = (mat[yStart][xStart] <= num) && (mat[squareHeight - 1][xStart] >= num);
         if (inQ1) {
             return 1;
         }
 
-        boolean inQ2 = (mat[yStart][xStart + ((xEnd - xStart) / 2)] <= num) && (mat[yStart + (yEnd - yStart) / 2 - 1][xStart + ((xEnd - xStart) / 2)] >= num);
+        boolean inQ2 = (mat[yStart][squareWidth] <= num) && (mat[squareHeight - 1][squareWidth] >= num);
         if (inQ2) {
             return 2;
         }
 
-        boolean inQ3 = (mat[yEnd / 2][xStart + ((xEnd - xStart) / 2)] <= num) && (mat[yEnd - 1][xStart + ((xEnd - xStart) / 2)] >= num);
+        boolean inQ3 = (mat[yEnd / 2][squareWidth] <= num) && (mat[yEnd - 1][squareWidth] >= num);
         if (inQ3) {
             return 3;
         }
