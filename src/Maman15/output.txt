@@ -1,0 +1,24 @@
+
+****Testing RectNode****
+finished
+
+****Testing RectList****
+Check carefully your output. Make sure it is the same as the required output.
+Your output:
+The list has 3 rectangles.
+1. Width=1 Height=2 PointSW=(0,0)
+2. Width=3 Height=4 PointSW=(0,0)
+3. Width=5 Height=6 PointSW=(1,1)
+
+Required ouput:
+The list has 3 rectangles.
+1. Width=1 Height=2 PointSW=(0,0)
+2. Width=3 Height=4 PointSW=(0,0)
+3. Width=5 Height=6 PointSW=(1,1)
+
+Method howManyWithPoint returns 1 for Point(1,1)
+Method longestDiagonal returns 7.810249675906654
+Method mostLeftRect returns (0,0)
+Method highestRect returns (6,7)
+Method minimalContainer returns Width=6 Height=7 PointSW=(0,0)
+finished
