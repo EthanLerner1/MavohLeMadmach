@@ -61,9 +61,9 @@ public class StudentTesterMaman15
         System.out.println("Method mostLeftRect returns " + p); 
         
         //highestRect
-        p = list.highestRect();
-        System.out.println("Method highestRect returns " + p);
-
+        p = list.highestRect(); 
+        System.out.println("Method highestRect returns " + p); 
+        
         //minimalContainer
         RectangleA r = list.minimalContainer();
         System.out.println("Method minimalContainer returns " + r);
