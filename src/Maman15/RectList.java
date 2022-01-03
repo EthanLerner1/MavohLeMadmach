@@ -12,15 +12,17 @@ public class RectList {
             this._head = new RectNode(r);
             return;
         }
+        RectNode previousNode = this._head;
         RectNode currentNode = this._head;
-        while (currentNode.getNext() != null) {
+        while (currentNode != null) {
             if (!currentNode.getRect().equals(r)) {
+                previousNode = currentNode;
                 currentNode = currentNode.getNext();
             } else {
                 return;
             }
         }
-        currentNode.setNext(new RectNode(r));
+        previousNode.setNext(new RectNode(r));
     }
 
     public int howManyWithPoint(Point p) {
