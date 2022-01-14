@@ -65,9 +65,6 @@ public class Ex14 {
             // stopping conditions
             if (yEnd - 1 == yStart)// if matrix have only one cell
                 return mat[yStart][xStart] == num;
-            if (yEnd - yStart == 2) // two by two matrix
-                return mat[yStart][xStart] == num || mat[yStart][xStart + 1] == num ||
-                        mat[yStart + 1][xStart] == num || mat[yStart + 1][xStart + 1] == num;
 
             // checking in which quarter num is
             int inQ = isInQ(mat, yStart, xStart, yEnd, xEnd, num);
@@ -198,6 +195,7 @@ public class Ex14 {
             return isSpecialR(n, startDivide);
         return false;
     }
+
     /*
      * recursive function to check if the number is special
      * numIndex: index of the relevant number. as the function runs, this index change according to the current divider.
@@ -207,7 +205,7 @@ public class Ex14 {
         // if the number index is lower than the current divider, this number is surely a won't fall
         if (numIndex < divideBy)
             return true;
-        // if the number index divides by the divider, then the number will fall
+            // if the number index divides by the divider, then the number will fall
         else if (numIndex % divideBy == 0)
             return false;
         // recursive call
