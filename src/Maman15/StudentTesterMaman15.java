@@ -26,7 +26,7 @@ public class StudentTesterMaman15
         // check getRect/setRect
         rectNode1.setRect(r3); 
         RectangleA r4 = rectNode1.getRect();
-
+d
         // check getNext/setNext
         RectNode rectNode4 = new RectNode(r4); 
         rectNode1.setNext(rectNode4);

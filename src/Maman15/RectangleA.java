@@ -4,11 +4,17 @@ package Maman15;//
 //
 
 public class RectangleA {
+    // properties
     private int _width;
     private int _height;
     private Point _pointSW;
     private final int MIN_VAL = 1;
 
+    /**
+     * def
+     * @param w
+     * @param h
+     */
     public RectangleA(int w, int h) {
         this._width = w >= 1 ? w : 1;
         this._height = h >= 1 ? h : 1;
